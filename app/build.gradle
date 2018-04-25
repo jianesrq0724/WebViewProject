@@ -38,6 +38,14 @@ android {
             manifestPlaceholders = [App_Name: "必应搜索"]
             buildConfigField "String", "App_Name", '"必应搜索"'
         }
+
+        picture1 {
+            versionCode 1
+            versionName "1.0.0"
+            applicationIdSuffix ".picture1"
+            manifestPlaceholders = [App_Name: "picture1"]
+            buildConfigField "String", "App_Name", '"picture1"'
+        }
     }
 }
 
