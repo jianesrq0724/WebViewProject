@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -45,7 +44,7 @@ public class BrowserActivity extends BaseActivity {
      */
     private X5WebView mWebView;
 
-    protected static String mHomeUrl = "https://blog.csdn.net/jianesrq0724";
+    protected static String mHomeUrl = "https://www.baidu.com";
     private static final String TAG = "SdkDemo";
     private static final int MAX_LENGTH = 14;
     private boolean mNeedTestPage = false;

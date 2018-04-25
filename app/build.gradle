@@ -24,11 +24,19 @@ android {
     flavorDimensions "default"
     productFlavors {
         guangdong {
-            versionCode 3
-            versionName "1.0.3"
+            versionCode 1
+            versionName "1.0.0"
             applicationIdSuffix ".gd"
             manifestPlaceholders = [App_Name: "guangdong"]
             buildConfigField "String", "App_Name", '"guagndong"'
+        }
+
+        browerbiying {
+            versionCode 1
+            versionName "1.0.0"
+            applicationIdSuffix ".bwby"
+            manifestPlaceholders = [App_Name: "必应搜索"]
+            buildConfigField "String", "App_Name", '"必应搜索"'
         }
     }
 }
