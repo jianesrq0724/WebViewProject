@@ -1,6 +1,17 @@
 apply plugin: 'com.android.application'
 
+/**采用解析Properties文件获取签名信息的方式，把签名放进版本控制不是明智的做法*/
+Properties props = new Properties()
+props.load(new FileInputStream(file("signing.properties")))
 android {
+    signingConfigs {
+        config {
+            keyAlias props['KEY_ALIAS']
+            keyPassword props['KEY_PASSWORD']
+            storeFile file(props['KEYSTORE_FILE'])
+            storePassword props['KEYSTORE_PASSWORD']
+        }
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.carl"
@@ -9,10 +20,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
         }
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
@@ -20,31 +31,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     flavorDimensions "default"
     productFlavors {
         guangdong {
             versionCode 1
             versionName "1.0.0"
             applicationIdSuffix ".gd"
-            manifestPlaceholders = [App_Name: "guangdong"]
-            buildConfigField "String", "App_Name", '"guagndong"'
         }
-
         browerbiying {
             versionCode 1
             versionName "1.0.0"
             applicationIdSuffix ".bwby"
-            manifestPlaceholders = [App_Name: "必应搜索"]
-            buildConfigField "String", "App_Name", '"必应搜索"'
         }
-
         picture1 {
             versionCode 1
             versionName "1.0.0"
             applicationIdSuffix ".picture1"
-            manifestPlaceholders = [App_Name: "picture1"]
-            buildConfigField "String", "App_Name", '"picture1"'
         }
     }
 }
@@ -52,7 +54,7 @@ android {
 
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
@@ -61,10 +63,8 @@ dependencies {
     implementation 'com.android.support:cardview-v7:26.1.+'
     implementation 'com.android.support:recyclerview-v7:26.1.+'
     implementation 'com.android.support:design:26.1.+'
-
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
     implementation 'io.reactivex.rxjava2:rxjava:2.1.2'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
 }
